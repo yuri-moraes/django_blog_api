@@ -10,7 +10,7 @@
     <h2>{{post.subtitulo}}</h2>
     <h3>{{post.autor}}</h3>
     <br />
-    <p>{{post.conteudo}}</p>
+    <p>{{post.conteudo | safe}}</p>
     <br />
     <button><a href="{% url 'home' %}">Voltar</a></button>
   </body>
