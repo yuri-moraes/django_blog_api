@@ -39,8 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog.apps.BlogConfig',
-    'ckeditor',
-    'ckeditor_uploader'
+    'django_ckeditor_5',
 ]
 
 MIDDLEWARE = [
@@ -129,11 +128,55 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-MEDIA_URL = 'images/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_5_CONFIGS = {
+    'default': {
+        'toolbar': [
+            'heading', '|',
+            'bold', 'italic', 'underline', 'strikethrough', 'subscript', 'superscript', '|',
+            'highlight', '|',
+            'alignment', '|',
+            'numberedList', 'bulletedList', '|',
+            'link', 'blockQuote', 'codeBlock', '|',
+            'insertTable', 'imageUpload', 'mediaEmbed', '|',
+            'undo', 'redo'
+        ],
+        'height': 'auto',
+        'width': '100%',
+        'blockToolbar': [
+            'paragraph', 'heading1', 'heading2', 'heading3',
+        ],
+        'image': {
+            'toolbar': [
+                'imageStyle:alignLeft', 'imageStyle:full', 'imageStyle:alignRight', '|',
+                'imageTextAlternative',
+            ],
+            'styles': [
+                'full',
+                'alignLeft',
+                'alignRight',
+            ]
+        },
+        'table': {
+            'contentToolbar': [
+                'tableColumn', 'tableRow', 'mergeTableCells'
+            ]
+        },
+        'simpleUpload': {
+            'uploadUrl': '/ckeditor5/upload/',
+            'headers': {
+                'X-CSRFToken': '{{ csrf_token }}',
+            }
+        },
+    },
+}
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
